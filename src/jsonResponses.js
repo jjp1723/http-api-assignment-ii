@@ -1,7 +1,8 @@
 // users Object - Empty upon the server starting/restarting
 const users = {};
 
-// respondJSON Method - Called by GET and POST requests; responds to requests with the status and json response
+// respondJSON Method - Called by GET and POST requests;
+//  responds to requests with the status and json response
 const respondJSON = (request, response, status, object) => {
   const header = { 'Content-Type': 'application/json' };
 
