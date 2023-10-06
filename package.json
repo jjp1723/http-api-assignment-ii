@@ -1,7 +1,7 @@
 {
-  "name": "http-api-assignment-ii",
+  "name": "project-1",
   "version": "1.0.0",
-  "description": "HTTP API Assignment 2 Code",
+  "description": "Project 1 Code",
   "main": "index.js",
   "scripts": {
     "start": "node ./src/server.js",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jjp1723/http-api-assignment-ii.git"
+    "url": "git+https://github.com/jjp1723/430-project-1.git"
   },
   "author": "John Pionzio",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jjp1723/http-api-assignment-ii/issues"
+    "url": "https://github.com/jjp1723/430-project-1/issues"
   },
-  "homepage": "https://github.com/jjp1723/http-api-assignment-ii#readme",
+  "homepage": "https://github.com/jjp1723/430-project-1#readme",
   "devDependencies": {
     "eslint": "^8.50.0",
     "eslint-config-airbnb": "^19.0.4",

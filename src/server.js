@@ -32,10 +32,10 @@ const parseBody = (request, response, handler) => {
   });
 };
 
-// handlePost Method - Handles post requests to '/addUser'
+// handlePost Method - Handles post requests to '/addTank'
 const handlePost = (request, response, parsedURL) => {
-  if (parsedURL.pathname === '/addUser') {
-    parseBody(request, response, jsonHandler.addUser);
+  if (parsedURL.pathname === '/addTank') {
+    parseBody(request, response, jsonHandler.addTank);
   }
 };
 
@@ -43,20 +43,20 @@ const handlePost = (request, response, parsedURL) => {
 //  (Attempted to put handlePost functionality within, but could get functioning properly)
 const urlStruct = {
   GET: {
-    '/':htmlHandler.getClient,
-    '/style.css':htmlHandler.getCSS,
-    '/getUsers':jsonHandler.getUsers,
-    '/notReal':jsonHandler.notFound,
+    '/': htmlHandler.getClient,
+    '/style.css': htmlHandler.getCSS,
+    '/getTanks': jsonHandler.getTanks,
+    '/notReal': jsonHandler.notFound,
     notFound: jsonHandler.notFound,
   },
   HEAD: {
-    '/getUsers':jsonHandler.getUsersMeta,
-    '/notReal':jsonHandler.notFoundMeta,
-    notFound:jsonHandler.notFoundMeta,
+    '/getTanks': jsonHandler.getUsersMeta,
+    '/notReal': jsonHandler.notFoundMeta,
+    notFound: jsonHandler.notFoundMeta,
   },
 };
 
-// onRequest Method - Receives requests from the client and determines the 
+// onRequest Method - Receives requests from the client and determines the
 //  response based on the requested url and the request method
 const onRequest = (request, response) => {
   const parsedURL = url.parse(request.url);

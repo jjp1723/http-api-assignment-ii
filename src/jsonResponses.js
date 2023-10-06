@@ -1,5 +1,5 @@
-// users Object - Empty upon the server starting/restarting
-const users = {};
+// tanks Object - Empty upon the server starting/restarting
+const tanks = {};
 
 // respondJSON Method - Called by GET and POST requests;
 //  responds to requests with the status and json response
@@ -19,25 +19,39 @@ const respondJSONMeta = (request, response, status) => {
   response.end();
 };
 
-// addUser Method - Adds new entries to the 'users' object;
+// addTank Method - Adds new entries to the 'tanks' object;
 //  also updates existing entries or returns an error when required fields are not provided
-const addUser = (request, response, body) => {
+const addTank = (request, response, body) => {
   const jsonResponse = { message: 'Name and age are both required.' };
 
-  if (!body.name || !body.age) {
+  if (!body.name || !body.nation || !body.year || !body.produced) {
     jsonResponse.id = 'missingParams';
     return respondJSON(request, response, 400, jsonResponse);
   }
 
   let status = 204;
 
-  if (!users[body.name]) {
+  if (!tanks[body.name]) {
     status = 201;
-    users[body.name] = {};
+    tanks[body.name] = {};
   }
 
-  users[body.name].name = body.name;
-  users[body.name].age = body.age;
+  tanks[body.name].name = body.name;
+  tanks[body.name].nation = body.nation;
+  tanks[body.name].year = body.year;
+  tanks[body.name].produced = body.produced;
+
+  if (!body.description) {
+    tanks[body.name].description = `The ${body.name} was a tank designed in ${body.nation} in the year ${body.year}, with ${body.produced} models produced.`;
+  } else {
+    tanks[body.name].description = body.description;
+  }
+
+  if(!body.image){
+    tanks[body.name].image = 'https://cdn-icons-png.flaticon.com/512/8206/8206245.png';
+  }else{
+    tanks[body.name].image = body.image;
+  }
 
   if (status === 201) {
     jsonResponse.message = 'Created Successfully';
@@ -48,8 +62,8 @@ const addUser = (request, response, body) => {
 };
 
 // getUsers Method - Returns the 'users' object and a status code 200 for a GET request
-const getUsers = (request, response) => {
-  const jsonResponse = { users };
+const getTanks = (request, response) => {
+  const jsonResponse = { users: tanks };
 
   return respondJSON(request, response, 200, jsonResponse);
 };
@@ -69,8 +83,8 @@ const notFoundMeta = (request, response) => respondJSONMeta(request, response, 4
 
 // Exporting Methods
 module.exports = {
-  addUser,
-  getUsers,
+  addTank,
+  getTanks,
   getUsersMeta,
   notFound,
   notFoundMeta,
